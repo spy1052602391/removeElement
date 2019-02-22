@@ -1,0 +1,39 @@
+package ÒÆ³ıÔªËØ;
+
+import java.net.Socket;
+
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int count = nums.length;
+        int end = nums.length-1;
+        for(int i=0; i<count; i++){
+            if(nums[i] == val){
+                while(end>=0 && nums[end] == val) {
+                    end--;
+                    count--;
+                }
+                if(end < 0){
+                    count = 0;
+                    break;
+                }
+                if(end <= i)
+                    break;
+                int tmp = nums[i];
+                nums[i] = nums[end];
+                nums[end] = tmp;
+                count--;
+                end--;
+            }
+        }
+        return count;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int[] nums = new int[]{4,5};
+        int a = solution.removeElement(nums,5);
+        System.out.println(a);
+    }
+}
